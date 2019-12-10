@@ -70,11 +70,65 @@ it('test 2 ships in the same position', () => {
 
 it('returns an array of deployed ships', () => {
   expect(board.deployedShips).toHaveLength(0);
-  const cond1 = board.setShip(new Ship(2, 'first ship'), 2, false);
-  const cond2 = board.setShip(new Ship(4, 'second ship'), 12, true);
+  board.setShip(new Ship(2, 'first ship'), 2, false);
+  board.setShip(new Ship(4, 'second ship'), 12, true);
   expect(board.deployedShips).toHaveLength(2);
 });
 
-// it('', () => {
+it('receiveAttack() determines if the cell has a ship or not...', () => {
+  board.setShip(new Ship(4, 'test ship'), 24, false); // 24,25,26,27
+  expect(board.deployedShips).toHaveLength(1);
+  expect(board.receiveAttack(15)).toBe(false);
+  expect(board.receiveAttack(25)).toBe(true);
+});
 
-// });
+it('receiveAttack() if called on an empty cell then it sets it to Missed', () => {
+  board.setShip(new Ship(4, 'test ship'), 24, false); // 24,25,26,27
+  expect(board.receiveAttack(15)).toBe(false);
+  expect(board.posArray[15]).toBe('M');
+});
+
+it('receiveAttack() if called on a ship then it calls the ship hit() method', () => {
+  const ship1 = Ship(4, 'test ship');
+  board.setShip(ship1, 24, false); // 24,25,26,27
+  expect(board.receiveAttack(25)).toBe(true);
+  expect(board.receiveAttack(26)).toBe(true);
+  expect(ship1.hitsNumber).toBe(2);
+});
+
+it('receiveAttack() sinks the ship with enough hits', () => {
+  const ship1 = Ship(2, 'test ship');
+  board.setShip(ship1, 24, false); // 24,25
+  expect(board.receiveAttack(24)).toBe(true);
+  expect(board.receiveAttack(25)).toBe(true);
+  expect(ship1.hitsNumber).toBe(2);
+  expect(ship1.isSunk()).toBe(true);
+});
+
+it('allSunk() returns true if all deployed ships are sunk', () => {
+  const ship1 = Ship(2, 'test ship');
+  const ship2 = Ship(1, 'test ship2');
+  board.setShip(ship1, 24, false); // 24,25
+  board.setShip(ship2, 30, true); // 30
+  board.receiveAttack(24);
+  board.receiveAttack(25);
+  board.receiveAttack(30);
+  expect(board.allSunk()).toBe(true);
+});
+
+it('allSunk() returns false if not all deployed ships are sunk', () => {
+  const ship1 = Ship(2, 'test ship');
+  const ship2 = Ship(1, 'test ship2');
+  const ship3 = Ship(1, 'test ship3');
+  const ship4 = Ship(3, 'test ship4');
+  board.setShip(ship1, 24, false); // 24,25
+  board.setShip(ship2, 30, true); // 30
+  board.setShip(ship3, 40, true); // 40
+  board.setShip(ship4, 55, false); // 55,56,57
+  // attack ship1
+  board.receiveAttack(24);
+  board.receiveAttack(25);
+  // attack ship2
+  board.receiveAttack(30);
+  expect(board.allSunk()).toBe(false);
+});

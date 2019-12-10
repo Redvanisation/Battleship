@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-syntax */
 /* eslint-disable linebreak-style */
 import Ship from './ship';
 
@@ -22,6 +23,7 @@ const board = (() => ({
           return false;
         }
         this.posArray[j] = ship.name;
+        ship.position.push(j);
       }
     } else {
       if (len + (iniPos % 10) > 10) {
@@ -32,13 +34,40 @@ const board = (() => ({
           return false;
         }
         this.posArray[i] = ship.name;
+        ship.position.push(i);
       }
     }
     this.deployedShips.push(ship);
     return true;
   },
 
+  receiveAttack(position) {
+    if (this.posArray[position] === 'E') {
+      this.posArray[position] = 'M';
+      return false;
+    }
 
+    for (const ship of this.deployedShips) {
+      if (ship.position.includes(position)) {
+        ship.hit();
+        return true;
+      }
+    }
+    return false;
+  },
+
+  allSunk() {
+    let counter = 0;
+
+    this.deployedShips.forEach((ship) => {
+      if (ship.isSunk()) {
+        counter += 1;
+      }
+    });
+
+    if (counter === this.deployedShips.length) return true;
+    return false;
+  },
 }));
 
 export default board;
