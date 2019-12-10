@@ -10,9 +10,12 @@ const board = (() => ({
     const len = ship.length;
 
     if (vertical) {
-      // for (let j = iniPos; j < iniPos * 10 + len; j += 10) {
-      //   this.posArray[j - 1] = 'S';
-      // }
+      if (iniPos + (10 * len) > 99) {
+        return false;
+      }
+      for (let j = iniPos; j < iniPos + (10 * len); j += 10) {
+        this.posArray[j] = 'S';
+      }
     } else {
       if (len + (iniPos % 10) > 10) {
         return false;
@@ -21,7 +24,6 @@ const board = (() => ({
     }
     return true;
   },
-
 }));
 
 export default board;
