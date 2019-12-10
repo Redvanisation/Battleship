@@ -1,6 +1,7 @@
-const Ship = ((length = 1) => ({
+const Ship = ((length = 1, name = 'Ship 1') => ({
   length,
   // position: [0],
+  name,
   hitsNumber: 0,
 
   hit() {
