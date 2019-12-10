@@ -4,7 +4,7 @@ import Board from '../gameboard';
 import Ship from '../ship';
 
 const board = Board();
-beforeAll(() => {
+beforeEach(() => {
   board.startBoard();
 });
 
@@ -58,4 +58,12 @@ it('test if a vertical ship could be placed on a board', () => {
   const cond = board.setShip(new Ship(2), 91, true);
   expect(cond).toBe(false);
   expect(board.posArray[91]).toBe('E');
+});
+
+it('test 2 ships in the same position', () => {
+  const cond1 = board.setShip(new Ship(2), 2, false);
+  const cond2 = board.setShip(new Ship(2), 2, true);
+  expect(cond1).toBe(true);
+  expect(cond2).toBe(false);
+  expect(board.posArray[2]).toBe('S');
 });
