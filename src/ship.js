@@ -1,6 +1,6 @@
 const Ship = ((length = 1) => ({
   length,
-  position: [0],
+  // position: [0],
   hitsNumber: 0,
 
   hit() {

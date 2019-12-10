@@ -3,15 +3,37 @@
 import Board from '../gameboard';
 import Ship from '../ship';
 
-it('test if a default ship is in the board', () => {
-  const board = Board();
-  board.setShip(new Ship());
+const board = Board();
+beforeAll(() => {
+  board.startBoard();
+});
+
+it('test if a default ship could be placed on a board', () => {
+  const cond = board.setShip(new Ship());
+  expect(cond).toBe(true);
   expect(board.posArray[0]).toBe('S');
 });
 
-it('test if a ship is in the board', () => {
-  const board = Board();
-  board.setShip(new Ship(2));
-  expect(board.posArray[0]).toBe('S');
-  expect(board.posArray[1]).toBe('S');
+it('test if a horizontal ship with length 2 could be placed on a board', () => {
+  const cond = board.setShip(new Ship(2), 2);
+  expect(cond).toBe(true);
+  expect(board.posArray[1]).toBe('E');
+  expect(board.posArray[2]).toBe('S');
+  expect(board.posArray[3]).toBe('S');
+  expect(board.posArray[4]).toBe('E');
+});
+
+it('test if an horizontal ship with a lenght more than the space is in the board', () => {
+  const cond = board.setShip(new Ship(4), 8);
+  expect(cond).toBe(false);
+  expect(board.posArray[8]).toBe('E');
+});
+
+it('test if a horizontal ship in the 4th row could be placed on a board', () => {
+  const cond = board.setShip(new Ship(2), 32);
+  expect(cond).toBe(true);
+  expect(board.posArray[31]).toBe('E');
+  expect(board.posArray[32]).toBe('S');
+  expect(board.posArray[33]).toBe('S');
+  expect(board.posArray[34]).toBe('E');
 });
