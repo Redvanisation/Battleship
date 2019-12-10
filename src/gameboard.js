@@ -1,5 +1,5 @@
-/* eslint-disable no-restricted-syntax */
 /* eslint-disable linebreak-style */
+/* eslint-disable no-restricted-syntax */
 import Ship from './ship';
 
 const board = (() => ({
