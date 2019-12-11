@@ -26,11 +26,17 @@ const setupBoards = () => {
         boards[x].appendChild(document.createElement('br'));
       }
     }
-    boards[x].addEventListener('click', (e) => {
-      if (!isNaN(e.target.dataset.player)) {
-        console.log(e.target.dataset.player);
-      }  
-    });
+    
+    if (x === 0) {
+      boards[x].addEventListener('click', (e) => {
+        if (!isNaN(e.target.dataset.player)) {
+          console.log(game.player.attack(game.computer, parseInt(e.target.dataset.player)));
+          console.log(game.computer.attack(game.player));
+          console.log('player turn: ',game.player.turn);
+          console.log('computer turn: ',game.computer.turn);
+        }
+      });
+    }
   }
 };
 
@@ -40,23 +46,23 @@ playerForm.addEventListener('submit', (e) => {
   e.preventDefault();
   setupBoards();
   game.start();
-  game.player1.setupRandomShips();
-  game.player2.setupRandomShips();
+  game.player.setupRandomShips();
+  game.computer.setupRandomShips();
 
-  const shipsP1 = game.player1.board.deployedShips;
+  const shipsP1 = game.player.board.deployedShips;
   shipsP1.forEach((ship) => {
     const arrPositions = ship.position;
     arrPositions.forEach((pos) => {
-      const cell = document.querySelector(`div[data-player="${pos}"]`);
+      const cell = document.querySelector(`div[data-computer="${pos}"]`);
       cell.classList.add('ship');
     });
   });
 
-  const shipsP2 = game.player2.board.deployedShips;
+  const shipsP2 = game.computer.board.deployedShips;
   shipsP2.forEach((ship) => {
     const arrPositions = ship.position;
     arrPositions.forEach((pos) => {
-      const cell = document.querySelector(`div[data-computer="${pos}"]`);
+      const cell = document.querySelector(`div[data-player="${pos}"]`);
       cell.classList.add('ship');
     });
   });
