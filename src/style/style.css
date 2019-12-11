@@ -15,3 +15,8 @@
 .ship{
   background: red;
 }
+
+.board-label {
+  display: block;
+  margin-bottom: 1rem;
+}

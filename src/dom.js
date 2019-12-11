@@ -12,6 +12,10 @@ const setupBoards = () => {
       id = 'player';
     }
     boards[x].innerHTML = '';
+    const lab = document.createElement('label');
+    lab.textContent = id;
+    lab.classList.add('board-label');
+    boards[x].appendChild(lab);
     for (let i = 1; i <= 100; i += 1) {
       const cellDiv = document.createElement('div');
       cellDiv.classList.add('cell');
@@ -22,10 +26,12 @@ const setupBoards = () => {
         boards[x].appendChild(document.createElement('br'));
       }
     }
+    boards[x].addEventListener('click', (e) => {
+      if (!isNaN(e.target.dataset.player)) {
+        console.log(e.target.dataset.player);
+      }  
+    });
   }
-  boards.forEach((board) => {
-    
-  });
 };
 
 const playerForm = document.querySelector('#player-form');
@@ -58,7 +64,6 @@ playerForm.addEventListener('submit', (e) => {
 
 const setupHeader = () => {
   const header = document.querySelector('header');
-  // header.classList.add('container');
 
   const h1 = document.createElement('h1');
   h1.classList.add('main-header', 'text-center', 'py-3');

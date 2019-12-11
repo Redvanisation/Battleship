@@ -8,9 +8,9 @@ const player = (() => ({
   board: new Board(),
   turn: true,
   startPlayer() {
-    this.board.setShip(new Ship(5, 'Ship1'), 9, true); // [2]
-    this.board.setShip(new Ship(3, 'Ship2'), 55, false); // [22,23]
-    this.board.setShip(new Ship(4, 'Ship3'), 80, false); // [33,43,53]
+    this.board.setShip(new Ship(5, 'Ship1'), 2, true); // [2]
+    this.board.setShip(new Ship(3, 'Ship2'), 22, false); // [22,23]
+    this.board.setShip(new Ship(4, 'Ship3'), 33, true); // [33,43,53]
     // this.board.setShip(new Ship(1, 'Ship1'), Math.floor((Math.random() * 99) + 1), false); // [1]
   },
 
