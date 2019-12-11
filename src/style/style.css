@@ -1,0 +1,17 @@
+.main-header{
+  color: rgb(28, 45, 117);
+}
+.board{
+  border: 1px solid black;
+  padding: 2rem;
+  margin: 2rem;
+}
+.cell{
+  background: grey;
+  display: inline;
+  border: 1px solid blue;
+  padding: 1rem;
+}
+.ship{
+  background: red;
+}
