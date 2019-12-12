@@ -1,14 +1,14 @@
 /* eslint-disable linebreak-style */
 
 import battleship from './battleship';
-import { colorShips, successfulAttack, missedAttack, randomNumber, computerAttack } from './helper';
+import { colorShips, successfulAttack, missedAttack, computerAttack, disable } from './helper';
 
+const boardsSection = document.querySelector('.board-section');
 const game = battleship();
 const theBoards = [];
 
 const setupBoards = () => {
   const boards = document.querySelectorAll('.board');
-
   let loops = 1;
   boards.forEach((board) => {
     board.innerHTML = '';
@@ -32,28 +32,19 @@ const setupBoards = () => {
     loops += 1;
     theBoards.push(board);
   });
-    
-  //   if (x === 0) {
-  //     boards[x].addEventListener('click', (e) => {
-  //       if (!isNaN(e.target.dataset.player)) {
-  //         console.log(game.player.attack(game.computer, parseInt(e.target.dataset.player)));
-  //         console.log(game.computer.attack(game.player));
-  //         console.log('player turn: ',game.player.turn);
-  //         console.log('computer turn: ',game.computer.turn);
-  //       }
-  //     });
-  //   }
-  // }
 };
 
 const playerForm = document.querySelector('#player-form');
 
 playerForm.addEventListener('submit', (e) => {
   e.preventDefault();
+  boardsSection.classList.remove('disabled');
   setupBoards();
 
   // console.log(theBoards);
   game.start();
+  game.player.board.deployedShips = [];
+  game.computer.board.deployedShips = [];
   game.player.setupRandomShips();
   game.computer.setupRandomShips();
 
@@ -64,7 +55,7 @@ playerForm.addEventListener('submit', (e) => {
   // display computer ships on player cells
   const shipsComp = game.computer.board.deployedShips;
   colorShips(shipsComp, game.player.name, 'ship');
-
+  
   cellsAction();
   // setTimeout(boo, 1000);
 });
@@ -79,12 +70,22 @@ const cellsAction = () => {
         const attacked = game.player.attack(game.computer, coor);
         if (attacked) {
           successfulAttack(e.target);
+          console.log('computer ships:', game.computer.board.deployedShips);
         } else {
           missedAttack(e.target);
           setTimeout(() => {
-            computerAttack(game.computer.turn, game.computer, game.player);
+            computerAttack(game.computer, game.player);
           }, 100);
         }
+      }
+      if (game.computer.board.allSunk()) {
+        // console.log('computer ships:', game.computer.board.deployedShips);
+        console.log(`Contratulations ${game.player.name}.!!! You Won!`);
+        disable(boardsSection);
+      } else if (game.player.board.allSunk()) {
+        console.log('player ships:', game.player.board.deployedShips);
+        console.log(`Bad! ${game.computer.name} Won. You Lost!`);
+        disable(boardsSection);
       }
     });
   });

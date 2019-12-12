@@ -7,6 +7,7 @@ const board = (() => ({
   deployedShips: [],
 
   startBoard() {
+    this.posArray = new Array(100);
     this.posArray.fill('E');
     this.deployedShips = [];
   },

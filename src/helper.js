@@ -33,7 +33,7 @@ const missedAttack = (elem) => {
   disable(elem);
 };
 
-const computerAttack = (turn, computer, player) => {
+const computerAttack = (computer, player) => {
   // if (!computer.turn) return;
   while (computer.turn) {
     const randNum = randomNumber(99);
@@ -42,11 +42,9 @@ const computerAttack = (turn, computer, player) => {
       const attacked = computer.attack(player, randNum);
       attacked ? successfulAttack(cell) : missedAttack(cell);
     }
-    console.log('cell', cell);
-    console.log('randNum', randNum);
   }
 }
 
 export {
-  randomNumber, count, colorShips, successfulAttack, missedAttack, computerAttack,
+  randomNumber, count, colorShips, successfulAttack, missedAttack, computerAttack, disable,
 };
