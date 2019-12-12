@@ -1,9 +1,13 @@
 /* eslint-disable linebreak-style */
 
 import battleship from './battleship';
-import { colorShips, successfulAttack, missedAttack, computerAttack, disable } from './helper';
+import { colorShips, successfulAttack, missedAttack, computerAttack, disable, handleRestart } from './helper';
 
 const boardsSection = document.querySelector('.board-section');
+const restart = document.querySelector('#btn-end-game');
+const endGame = document.querySelector('#end-game');
+const endGameH2 = document.querySelector('#end-game-h2');
+
 const game = battleship();
 const theBoards = [];
 
@@ -40,11 +44,9 @@ playerForm.addEventListener('submit', (e) => {
   e.preventDefault();
   boardsSection.classList.remove('disabled');
   setupBoards();
-
   // console.log(theBoards);
   game.start();
-  game.player.board.deployedShips = [];
-  game.computer.board.deployedShips = [];
+
   game.player.setupRandomShips();
   game.computer.setupRandomShips();
 
@@ -79,17 +81,21 @@ const cellsAction = () => {
         }
       }
       if (game.computer.board.allSunk()) {
-        // console.log('computer ships:', game.computer.board.deployedShips);
-        console.log(`Contratulations ${game.player.name}.!!! You Won!`);
+
+        endGameH2.textContent = `Contratulations ${game.player.name}.!!! You Won!`;
         disable(boardsSection);
+        endGame.classList.remove('hidden');
       } else if (game.player.board.allSunk()) {
-        console.log('player ships:', game.player.board.deployedShips);
-        console.log(`Bad! ${game.computer.name} Won. You Lost!`);
+
+        endGameH2.textContent = `Bad! ${game.computer.name} Won. You Lost!`;
         disable(boardsSection);
+        endGame.classList.remove('hidden');
       }
     });
   });
 };
+
+restart.addEventListener('click', handleRestart);
 
 
 const setupHeader = () => {

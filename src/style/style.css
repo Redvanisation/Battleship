@@ -36,3 +36,34 @@
 .attack-missed {
   background-color: aqua;
 }
+
+.end-game {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10;
+  background-color: rgba(0,0,0,.8);
+  text-align: center;
+}
+
+.end-game-div {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  text-transform: uppercase;
+}
+
+.end-game-h2 {
+  color: #fff;
+}
+
+.btn-end-game {
+
+}
+
+.hidden {
+  display: none;
+}

@@ -43,8 +43,12 @@ const computerAttack = (computer, player) => {
       attacked ? successfulAttack(cell) : missedAttack(cell);
     }
   }
-}
+};
+
+const handleRestart = () => {
+  location.reload(true);
+};
 
 export {
-  randomNumber, count, colorShips, successfulAttack, missedAttack, computerAttack, disable,
+  randomNumber, count, colorShips, successfulAttack, missedAttack, computerAttack, disable, handleRestart,
 };

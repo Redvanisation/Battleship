@@ -18,7 +18,7 @@ const player = ((name = '') => ({
   setupRandomShips() {
     let vertical = true;
     this.board.startBoard();
-    while (this.board.deployedShips.length < 6) {
+    while (this.board.deployedShips.length < 2) {
       const len = randomNumber(4) + 1;
       const pos = randomNumber(99);
       vertical = !vertical;
