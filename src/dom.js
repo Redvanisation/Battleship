@@ -3,8 +3,7 @@
 import battleship from './battleship';
 import { colorShips, successfulAttack, missedAttack, computerAttack, disable, handleRestart } from './helper';
 
-// const playerInput = document.querySelector('#player-input');
-const playerForm = document.querySelector('#player-form');
+const playerForm = document.querySelector('.player-section');
 const boardsSection = document.querySelector('.board-section');
 const restart = document.querySelector('#btn-end-game');
 const endGame = document.querySelector('#end-game');
@@ -46,7 +45,7 @@ const cellsAction = () => {
   theBoards.forEach((board) => {
     board.addEventListener('click', (e) => {
       if (Object.keys(e.target.dataset).toString() === 'player') {
-        const coor = parseInt(e.target.dataset.player);
+        const coor = parseInt(e.target.dataset.player, 10);
         if (!game.player.turn) return;
         const attacked = game.player.attack(game.computer, coor);
 
@@ -54,7 +53,7 @@ const cellsAction = () => {
           successfulAttack(e.target);
 
           if (game.computer.board.allSunk()) {
-            endGameH2.textContent = `Contratulations ${game.player.name}.!!! You Won!`;
+            endGameH2.textContent = 'Contratulations Player!!! You Won!';
             disable(boardsSection);
             endGame.classList.remove('hidden');
           }
@@ -62,7 +61,7 @@ const cellsAction = () => {
           missedAttack(e.target);
           setTimeout(() => {
             computerAttack(game.computer, game.player, endGameH2, boardsSection, endGame);
-          }, 100);
+          }, 1000);
         }
       }
     });
@@ -76,7 +75,6 @@ playerForm.addEventListener('submit', (e) => {
 
   playerForm.classList.add('hidden');
 
-  // console.log(theBoards);
   game.start();
 
   game.player.setupRandomShips();
@@ -92,12 +90,8 @@ restart.addEventListener('click', handleRestart);
 
 
 const setupHeader = () => {
-  const header = document.querySelector('header');
-
-  const h1 = document.createElement('h1');
-  h1.classList.add('main-header', 'text-center', 'py-3');
+  const h1 = document.querySelector('#h1');
   h1.textContent = 'BATTLESHIP';
-  header.appendChild(h1);
 };
 
 

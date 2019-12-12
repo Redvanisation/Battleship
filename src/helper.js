@@ -13,7 +13,6 @@ const colorShips = (shipsObj, className) => {
   shipsObj.forEach((ship) => {
     ship.position.forEach((pos) => {
       const cell = document.querySelector(`div[data-computer="${pos}"]`);
-      // console.log(cell)
       cell.classList.add(className);
     });
   });
@@ -42,7 +41,7 @@ const computerAttack = (computer, player, title, section, dv) => {
       attacked ? successfulAttack(cell) : missedAttack(cell);
     }
     if (player.board.allSunk()) {
-      title.textContent = `Bad! ${computer.name} Won. You Lost!`;
+      title.textContent = 'Bad! Computer Won! You Lost!';
       disable(section);
       dv.classList.remove('hidden');
     }

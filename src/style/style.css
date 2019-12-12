@@ -1,15 +1,35 @@
-.main-header{
-  color: rgb(28, 45, 117);
+body {
+  background-color: #222;
 }
+
+.player-section {
+  border: 2px solid #999;
+  border-radius: 5px;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-60%);
+  width: 50%;
+  padding: 5rem;
+}
+
+.main-header{
+  color: #999;
+  font-weight: 900;
+  letter-spacing: 5px;
+  font-size: 3rem;
+}
+
+
 .board{
-  /* border: 1px solid black; */
   padding: 2rem;
 }
 
 .cell{
   display: inline-block;
-  background: #999;
-  border: 1px solid #fff;
+  background: #555;
+  border: 1px solid #999;
   border-radius: 3px;
   padding: 1rem;
   height: 50px;
@@ -19,12 +39,17 @@
 }
 
 .ship{
-  background: red;
+  background: #a52a2a;
 }
 
 .board-label {
   display: block;
   margin-bottom: 1rem;
+  font-weight: 900;
+  font-size: 1.5rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #999;
 }
 
 .disabled {
@@ -32,7 +57,7 @@
 }
 
 .attack-success {
-  background-color: #fff;
+  background-color: #380f0f;
   background-image: url('../img/fire.png');
   background-size: 70%;
   background-position: center;
@@ -40,7 +65,7 @@
 }
 
 .attack-missed {
-  background-color: #fff;
+  background-color: rgb(12, 45, 77);
   background-image: url('../img/water-splash.png');
   background-size: 98%;
   background-position: center;
@@ -63,15 +88,24 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%,-50%);
-  text-transform: uppercase;
+  border: 2px solid #fff;
+  border-radius: 5px;
+  padding: 10rem;
 }
 
 .end-game-h2 {
   color: #fff;
+  text-transform: capitalize;
+  letter-spacing: 5px;
+  font-size: 2.5rem;
 }
 
 .btn-end-game {
-
+  padding: 1rem 2rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 20px;
+  border: 1px solid #fff;
 }
 
 .hidden {
