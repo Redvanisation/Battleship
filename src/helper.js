@@ -33,4 +33,12 @@ const missedAttack = (elem) => {
   disable(elem);
 };
 
-export { randomNumber, count, colorShips, successfulAttack, missedAttack };
+const computerAttack = (turn, computer, player) => {
+  if (!turn) return;
+  const randNum = randomNumber(99);
+  const cell = document.querySelector(`div[data-computer="${randNum}"]`);
+  const compterAttack = computer.attack(player, randNum);
+  compterAttack ? successfulAttack(cell) : missedAttack(cell);
+}
+
+export { randomNumber, count, colorShips, successfulAttack, missedAttack, computerAttack };

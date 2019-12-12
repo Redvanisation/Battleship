@@ -7,6 +7,7 @@ const battleship = (() => ({
   computer: new Player('computer'),
   start() {
     this.player.turn = true;
+    this.computer.turn = false;
     this.player.board.startBoard();
     this.computer.board.startBoard();
   },

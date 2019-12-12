@@ -1,7 +1,7 @@
 /* eslint-disable linebreak-style */
 
 import battleship from './battleship';
-import { colorShips, successfulAttack, missedAttack } from './helper';
+import { colorShips, successfulAttack, missedAttack, randomNumber, computerAttack } from './helper';
 
 const game = battleship();
 const theBoards = [];
@@ -75,8 +75,15 @@ const cellsAction = () => {
     board.addEventListener('click', (e) => {
       if (Object.keys(e.target.dataset).toString() === 'player') {
         const coor = parseInt(e.target.dataset.player);
+        if (!game.player.turn) return;
         const attacked = game.player.attack(game.computer, coor);
         attacked ? successfulAttack(e.target) : missedAttack(e.target);
+        // console.log('player turn: ', game.player.turn)
+
+        setTimeout(() => {
+          computerAttack(game.computer.turn, game.computer, game.player);
+        }, 1000);
+        
       }
     });
   });

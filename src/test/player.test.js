@@ -4,6 +4,7 @@
 // import Ship from '../ship';
 import Player from '../player';
 import { count } from '../helper';
+import player from '../player';
 
 
 describe('Player factory', () => {
@@ -49,5 +50,14 @@ describe('Player factory', () => {
 
     const arrEmptyCountAfter = count(player1.board.posArray, 'E');
     expect(arrEmptyCountBefore).toBeGreaterThan(arrEmptyCountAfter);
+  });
+});
+
+describe("Player's ships random deployment", () => {
+  const player1 = new Player();
+  it('tests if the player has a number of randomly deployed ships', () => {
+    player1.board.startBoard();
+    player1.setupRandomShips();
+    expect(player1.board.deployedShips.length).toBe(6);
   });
 });

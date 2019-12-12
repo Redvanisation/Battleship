@@ -28,10 +28,10 @@ const player = ((name = '') => ({
   attack(player2, posAttack = setTimeout(randomNumber(99), 500)) {
     if (this.turn) {
       const successAttack = player2.board.receiveAttack(posAttack);
-      // if (!successAttack) {
-      //   this.turn = !this.turn;
-      //   player2.turn = !player2.turn;
-      // }
+      if (!successAttack) {
+        this.turn = !this.turn;
+        player2.turn = !player2.turn;
+      }
       return successAttack;
     }
     return false;
