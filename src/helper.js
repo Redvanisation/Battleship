@@ -19,4 +19,18 @@ const colorShips = (shipsObj, name, className) => {
   });
 };
 
-export { randomNumber, count, colorShips };
+const disable = (elem) => {
+  elem.classList.add('disabled');
+};
+
+const successfulAttack = (elem) => {
+  elem.classList.add('attack-success');
+  disable(elem);
+};
+
+const missedAttack = (elem) => {
+  elem.classList.add('attack-missed');
+  disable(elem);
+};
+
+export { randomNumber, count, colorShips, successfulAttack, missedAttack };
