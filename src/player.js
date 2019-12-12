@@ -1,4 +1,5 @@
 /* eslint-disable linebreak-style */
+/* eslint-disable no-param-reassign */
 /* eslint-disable no-restricted-syntax */
 import Ship from './ship';
 import Board from './gameboard';

@@ -1,7 +1,11 @@
 /* eslint-disable linebreak-style */
+/* eslint-disable no-unused-expressions */
+/* eslint-disable no-param-reassign */
 
 import battleship from './battleship';
-import { colorShips, successfulAttack, missedAttack, computerAttack, disable, handleRestart } from './helper';
+import {
+  colorShips, successfulAttack, missedAttack, computerAttack, disable, handleRestart,
+} from './helper';
 
 const playerForm = document.querySelector('.player-section');
 const boardsSection = document.querySelector('.board-section');

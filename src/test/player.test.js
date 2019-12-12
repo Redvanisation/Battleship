@@ -4,7 +4,6 @@
 // import Ship from '../ship';
 import Player from '../player';
 import { count } from '../helper';
-import player from '../player';
 
 
 describe('Player factory', () => {

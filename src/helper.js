@@ -1,5 +1,8 @@
 /* eslint-disable linebreak-style */
-const randomNumber = limit => Math.floor((Math.random() * limit) + 1);
+/* eslint-disable no-restricted-globals */
+/* eslint-disable no-param-reassign */
+/* eslint-disable no-unused-expressions */
+const randomNumber = (limit) => Math.floor((Math.random() * limit) + 1);
 
 const count = (arr, item) => {
   let counter = 0;
@@ -53,5 +56,12 @@ const handleRestart = () => {
 };
 
 export {
-  randomNumber, count, colorShips, successfulAttack, missedAttack, computerAttack, disable, handleRestart,
+  randomNumber,
+  count,
+  colorShips,
+  successfulAttack,
+  missedAttack,
+  computerAttack,
+  disable,
+  handleRestart,
 };
