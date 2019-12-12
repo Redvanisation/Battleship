@@ -3,6 +3,8 @@
 import battleship from './battleship';
 import { colorShips, successfulAttack, missedAttack, computerAttack, disable, handleRestart } from './helper';
 
+// const playerInput = document.querySelector('#player-input');
+const playerForm = document.querySelector('#player-form');
 const boardsSection = document.querySelector('.board-section');
 const restart = document.querySelector('#btn-end-game');
 const endGame = document.querySelector('#end-game');
@@ -38,12 +40,42 @@ const setupBoards = () => {
   });
 };
 
-const playerForm = document.querySelector('#player-form');
+
+const cellsAction = () => {
+  if (!theBoards) return;
+  theBoards.forEach((board) => {
+    board.addEventListener('click', (e) => {
+      if (Object.keys(e.target.dataset).toString() === 'player') {
+        const coor = parseInt(e.target.dataset.player);
+        if (!game.player.turn) return;
+        const attacked = game.player.attack(game.computer, coor);
+
+        if (attacked) {
+          successfulAttack(e.target);
+
+          if (game.computer.board.allSunk()) {
+            endGameH2.textContent = `Contratulations ${game.player.name}.!!! You Won!`;
+            disable(boardsSection);
+            endGame.classList.remove('hidden');
+          }
+        } else {
+          missedAttack(e.target);
+          setTimeout(() => {
+            computerAttack(game.computer, game.player, endGameH2, boardsSection, endGame);
+          }, 100);
+        }
+      }
+    });
+  });
+};
 
 playerForm.addEventListener('submit', (e) => {
   e.preventDefault();
   boardsSection.classList.remove('disabled');
   setupBoards();
+
+  playerForm.classList.add('hidden');
+
   // console.log(theBoards);
   game.start();
 
@@ -52,48 +84,9 @@ playerForm.addEventListener('submit', (e) => {
 
   // display player ships on computer cells
   const shipsP1 = game.player.board.deployedShips;
-  colorShips(shipsP1, game.computer.name, 'ship');
-  
-  // display computer ships on player cells
-  const shipsComp = game.computer.board.deployedShips;
-  colorShips(shipsComp, game.player.name, 'ship');
-  
+  colorShips(shipsP1, 'ship');
   cellsAction();
-  // setTimeout(boo, 1000);
 });
-
-const cellsAction = () => {
-  if (!theBoards) return;
-  theBoards.forEach((board) => {
-    board.addEventListener('click', (e) => {
-      if (Object.keys(e.target.dataset).toString() === 'player') {
-        const coor = parseInt(e.target.dataset.player, 10);
-        if (!game.player.turn) return;
-        const attacked = game.player.attack(game.computer, coor);
-        if (attacked) {
-          successfulAttack(e.target);
-          console.log('computer ships:', game.computer.board.deployedShips);
-        } else {
-          missedAttack(e.target);
-          setTimeout(() => {
-            computerAttack(game.computer, game.player);
-          }, 100);
-        }
-      }
-      if (game.computer.board.allSunk()) {
-
-        endGameH2.textContent = `Contratulations ${game.player.name}.!!! You Won!`;
-        disable(boardsSection);
-        endGame.classList.remove('hidden');
-      } else if (game.player.board.allSunk()) {
-
-        endGameH2.textContent = `Bad! ${game.computer.name} Won. You Lost!`;
-        disable(boardsSection);
-        endGame.classList.remove('hidden');
-      }
-    });
-  });
-};
 
 restart.addEventListener('click', handleRestart);
 
@@ -108,4 +101,4 @@ const setupHeader = () => {
 };
 
 
-export { setupHeader, setupBoards };
+export default setupHeader;

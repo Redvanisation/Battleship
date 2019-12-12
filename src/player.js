@@ -12,13 +12,12 @@ const player = ((name = '') => ({
     this.board.setShip(new Ship(5, 'Ship1'), 2, true); // [2]
     this.board.setShip(new Ship(3, 'Ship2'), 22, false); // [22,23]
     this.board.setShip(new Ship(4, 'Ship3'), 33, true); // [33,43,53]
-    // this.board.setShip(new Ship(1, 'Ship1'), Math.floor((Math.random() * 99) + 1), false); // [1]
   },
 
   setupRandomShips() {
     let vertical = true;
     this.board.startBoard();
-    while (this.board.deployedShips.length < 2) {
+    while (this.board.deployedShips.length < 6) {
       const len = randomNumber(4) + 1;
       const pos = randomNumber(99);
       vertical = !vertical;

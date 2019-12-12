@@ -9,10 +9,10 @@ const count = (arr, item) => {
   return counter;
 };
 
-const colorShips = (shipsObj, name, className) => {
+const colorShips = (shipsObj, className) => {
   shipsObj.forEach((ship) => {
     ship.position.forEach((pos) => {
-      const cell = document.querySelector(`div[data-${name}="${pos}"]`);
+      const cell = document.querySelector(`div[data-computer="${pos}"]`);
       // console.log(cell)
       cell.classList.add(className);
     });
@@ -33,14 +33,18 @@ const missedAttack = (elem) => {
   disable(elem);
 };
 
-const computerAttack = (computer, player) => {
-  // if (!computer.turn) return;
+const computerAttack = (computer, player, title, section, dv) => {
   while (computer.turn) {
     const randNum = randomNumber(99);
     const cell = document.querySelector(`div[data-computer="${randNum}"]`);
     if (!cell.classList.contains('disabled')) {
       const attacked = computer.attack(player, randNum);
       attacked ? successfulAttack(cell) : missedAttack(cell);
+    }
+    if (player.board.allSunk()) {
+      title.textContent = `Bad! ${computer.name} Won. You Lost!`;
+      disable(section);
+      dv.classList.remove('hidden');
     }
   }
 };

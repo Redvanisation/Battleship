@@ -2,18 +2,20 @@
   color: rgb(28, 45, 117);
 }
 .board{
-  border: 1px solid black;
+  /* border: 1px solid black; */
   padding: 2rem;
 }
 
 .cell{
   display: inline-block;
-  background: grey;
-  border: 1px solid blue;
+  background: #999;
+  border: 1px solid #fff;
+  border-radius: 3px;
   padding: 1rem;
   height: 50px;
   width: 50px;
   cursor: pointer;
+  font-size: 0;
 }
 
 .ship{
@@ -30,11 +32,19 @@
 }
 
 .attack-success {
-  background-color: yellow;
+  background-color: #fff;
+  background-image: url('../img/fire.png');
+  background-size: 70%;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .attack-missed {
-  background-color: aqua;
+  background-color: #fff;
+  background-image: url('../img/water-splash.png');
+  background-size: 98%;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .end-game {
