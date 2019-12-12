@@ -74,16 +74,17 @@ const cellsAction = () => {
   theBoards.forEach((board) => {
     board.addEventListener('click', (e) => {
       if (Object.keys(e.target.dataset).toString() === 'player') {
-        const coor = parseInt(e.target.dataset.player);
+        const coor = parseInt(e.target.dataset.player, 10);
         if (!game.player.turn) return;
         const attacked = game.player.attack(game.computer, coor);
-        attacked ? successfulAttack(e.target) : missedAttack(e.target);
-        // console.log('player turn: ', game.player.turn)
-
-        setTimeout(() => {
-          computerAttack(game.computer.turn, game.computer, game.player);
-        }, 1000);
-        
+        if (attacked) {
+          successfulAttack(e.target);
+        } else {
+          missedAttack(e.target);
+          setTimeout(() => {
+            computerAttack(game.computer.turn, game.computer, game.player);
+          }, 100);
+        }
       }
     });
   });

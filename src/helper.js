@@ -34,11 +34,19 @@ const missedAttack = (elem) => {
 };
 
 const computerAttack = (turn, computer, player) => {
-  if (!turn) return;
-  const randNum = randomNumber(99);
-  const cell = document.querySelector(`div[data-computer="${randNum}"]`);
-  const compterAttack = computer.attack(player, randNum);
-  compterAttack ? successfulAttack(cell) : missedAttack(cell);
+  // if (!computer.turn) return;
+  while (computer.turn) {
+    const randNum = randomNumber(99);
+    const cell = document.querySelector(`div[data-computer="${randNum}"]`);
+    if (!cell.classList.contains('disabled')) {
+      const attacked = computer.attack(player, randNum);
+      attacked ? successfulAttack(cell) : missedAttack(cell);
+    }
+    console.log('cell', cell);
+    console.log('randNum', randNum);
+  }
 }
 
-export { randomNumber, count, colorShips, successfulAttack, missedAttack, computerAttack };
+export {
+  randomNumber, count, colorShips, successfulAttack, missedAttack, computerAttack,
+};
