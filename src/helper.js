@@ -2,7 +2,7 @@
 /* eslint-disable no-restricted-globals */
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-unused-expressions */
-const randomNumber = (limit) => Math.floor((Math.random() * limit) + 1);
+const randomNumber = limit => Math.floor((Math.random() * limit) + 1);
 
 const count = (arr, item) => {
   let counter = 0;
