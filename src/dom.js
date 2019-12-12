@@ -1,43 +1,49 @@
 /* eslint-disable linebreak-style */
 
 import battleship from './battleship';
+import { colorShips } from './helper';
 
 const game = battleship();
+const theBoards = [];
 
 const setupBoards = () => {
   const boards = document.querySelectorAll('.board');
-  for (let x = 0; x < boards.length; x += 1) {
-    let id = 'computer';
-    if (x === 0) {
-      id = 'player';
-    }
-    boards[x].innerHTML = '';
+
+  let loops = 1;
+  boards.forEach((board) => {
+    board.innerHTML = '';
+    let id = '';
+    loops === 1 ? id = 'computer' : id = 'player';
+
     const lab = document.createElement('label');
     lab.textContent = id;
     lab.classList.add('board-label');
-    boards[x].appendChild(lab);
+    board.appendChild(lab);
     for (let i = 1; i <= 100; i += 1) {
       const cellDiv = document.createElement('div');
       cellDiv.classList.add('cell');
       cellDiv.setAttribute(`data-${id}`, (i - 1));
       cellDiv.textContent = 'E';
-      boards[x].appendChild(cellDiv);
+      board.appendChild(cellDiv);
       if (i % 10 === 0) {
-        boards[x].appendChild(document.createElement('br'));
+        board.appendChild(document.createElement('br'));
       }
     }
+    loops += 1;
+    theBoards.push(board);
+  });
     
-    if (x === 0) {
-      boards[x].addEventListener('click', (e) => {
-        if (!isNaN(e.target.dataset.player)) {
-          console.log(game.player.attack(game.computer, parseInt(e.target.dataset.player)));
-          console.log(game.computer.attack(game.player));
-          console.log('player turn: ',game.player.turn);
-          console.log('computer turn: ',game.computer.turn);
-        }
-      });
-    }
-  }
+  //   if (x === 0) {
+  //     boards[x].addEventListener('click', (e) => {
+  //       if (!isNaN(e.target.dataset.player)) {
+  //         console.log(game.player.attack(game.computer, parseInt(e.target.dataset.player)));
+  //         console.log(game.computer.attack(game.player));
+  //         console.log('player turn: ',game.player.turn);
+  //         console.log('computer turn: ',game.computer.turn);
+  //       }
+  //     });
+  //   }
+  // }
 };
 
 const playerForm = document.querySelector('#player-form');
@@ -45,28 +51,43 @@ const playerForm = document.querySelector('#player-form');
 playerForm.addEventListener('submit', (e) => {
   e.preventDefault();
   setupBoards();
+
+  // console.log(theBoards);
   game.start();
   game.player.setupRandomShips();
   game.computer.setupRandomShips();
 
+  // display player ships on computer cells
   const shipsP1 = game.player.board.deployedShips;
-  shipsP1.forEach((ship) => {
-    const arrPositions = ship.position;
-    arrPositions.forEach((pos) => {
-      const cell = document.querySelector(`div[data-computer="${pos}"]`);
-      cell.classList.add('ship');
-    });
-  });
+  colorShips(shipsP1, game.computer.name, 'ship');
+  
+  // display computer ships on player cells
+  const shipsComp = game.computer.board.deployedShips;
+  colorShips(shipsComp, game.player.name, 'ship');
 
-  const shipsP2 = game.computer.board.deployedShips;
-  shipsP2.forEach((ship) => {
-    const arrPositions = ship.position;
-    arrPositions.forEach((pos) => {
-      const cell = document.querySelector(`div[data-player="${pos}"]`);
-      cell.classList.add('ship');
+  cellsAction();
+  // setTimeout(boo, 1000);
+});
+
+const cellsAction = () => {
+  if (!theBoards) return;
+  theBoards.forEach((board) => {
+    board.addEventListener('click', (e) => {
+      if (Object.keys(e.target.dataset).toString() === 'player') {
+        const coor = parseInt(e.target.dataset.player);
+
+        console.log(game.player.board.receiveAttack(coor));
+        // console.log(game.player.attack(game.computer, coor));
+        // console.log(game.player.attack(game.computer, parseInt(e.target.dataset.player)));
+
+        // console.log(coor);
+        console.log(game.computer.board.deployedShips);
+        console.log(game.player.board.deployedShips);
+      }
     });
   });
-});
+};
+
 
 const setupHeader = () => {
   const header = document.querySelector('header');

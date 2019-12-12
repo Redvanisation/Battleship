@@ -9,4 +9,14 @@ const count = (arr, item) => {
   return counter;
 };
 
-export { randomNumber, count };
+const colorShips = (shipsObj, name, className) => {
+  shipsObj.forEach((ship) => {
+    ship.position.forEach((pos) => {
+      const cell = document.querySelector(`div[data-${name}="${pos}"]`);
+      // console.log(cell)
+      cell.classList.add(className);
+    });
+  });
+};
+
+export { randomNumber, count, colorShips };

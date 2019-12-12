@@ -3,10 +3,9 @@
 import Player from './player';
 
 const battleship = (() => ({
-  player: new Player(),
-  computer: new Player(),
+  player: new Player('player'),
+  computer: new Player('computer'),
   start() {
-    this.computer.turn = false;
     this.player.board.startBoard();
     this.computer.board.startBoard();
   },

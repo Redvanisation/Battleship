@@ -4,9 +4,10 @@ import Ship from './ship';
 import Board from './gameboard';
 import { randomNumber } from './helper';
 
-const player = (() => ({
+const player = ((name = '') => ({
+  name,
   board: new Board(),
-  turn: true,
+  turn: false,
   startPlayer() {
     this.board.setShip(new Ship(5, 'Ship1'), 2, true); // [2]
     this.board.setShip(new Ship(3, 'Ship2'), 22, false); // [22,23]

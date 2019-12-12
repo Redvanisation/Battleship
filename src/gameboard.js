@@ -50,7 +50,7 @@ const board = (() => ({
     for (const ship of this.deployedShips) {
       if (ship.position.includes(position)) {
         ship.hit();
-        return true;
+        // return true;
       }
     }
     return false;
