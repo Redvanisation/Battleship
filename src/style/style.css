@@ -10,20 +10,24 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%,-60%);
-  width: 50%;
+  width: 70%;
   padding: 5rem;
 }
 
-.main-header{
+.main-header {
   color: #999;
   font-weight: 900;
   letter-spacing: 5px;
   font-size: 3rem;
 }
 
+.board-section {
+  padding: 2rem 0;
+}
 
 .board{
   padding: 2rem;
+  margin: 0 auto;
 }
 
 .cell{
@@ -90,7 +94,11 @@ body {
   transform: translate(-50%,-50%);
   border: 2px solid #fff;
   border-radius: 5px;
-  padding: 10rem;
+  padding: 6rem 2rem 0 2rem;
+  width: 90%;
+  height: 50%;
+  max-width: 90%;
+  max-height: 50%;
 }
 
 .end-game-h2 {
@@ -110,4 +118,66 @@ body {
 
 .hidden {
   display: none;
+}
+
+@media only screen and (max-width: 950px) {
+  .player-section {
+    width: 80%;
+  }
+
+  .main-header {
+    font-size: 2.5rem;
+  }
+
+  .end-game-h2 {
+    letter-spacing: 3px;
+    font-size: 2rem;
+  }
+}
+
+@media only screen and (max-width: 770px) {
+  .player-section {
+    padding: 2rem;
+  }
+
+  .main-header {
+    font-size: 1.5rem;
+  }
+
+  .btn-end-game {
+    padding: .5rem 1rem;
+    font-size: 1rem;
+  }
+
+  .board{
+    padding: 0;
+  }
+  
+  .cell{
+    height: 35px;
+    width: 35px;
+  }
+
+  .end-game-h2 {
+    line-height: 1.5;
+    font-size: 1.5rem;
+  }
+}
+
+@media only screen and (max-width: 350px) {
+  .cell{
+    padding: .9rem;
+    height: 30px;
+    width: 30px;
+  }
+
+  .end-game-div {
+    padding: 4rem 2rem 0 2rem;
+  }
+
+  .end-game-h2 {
+    letter-spacing: 1px;
+    font-size: 1.5rem;
+  }
+
 }
