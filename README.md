@@ -5,7 +5,7 @@
     Vanilla JavaScript battleship game
     <br>
     <br>
-    <a href="https://rawcdn.githack.com/Redvanisation/Battleship/feature/battleship/dist/index.html" target="_blank">Live Demo</a>
+    <a href="https://cdn.statically.io/gh/Redvanisation/Battleship/feature/battleship/dist/index.html" target="_blank">Live Demo</a>
     .
     <a href="https://github.com/Redvanisation/Battleship/issues">Report Bug</a>
     ·
