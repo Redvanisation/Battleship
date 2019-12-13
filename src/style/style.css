@@ -124,11 +124,9 @@ body {
   .player-section {
     width: 80%;
   }
-
   .main-header {
     font-size: 2.5rem;
   }
-
   .end-game-h2 {
     letter-spacing: 3px;
     font-size: 2rem;
@@ -139,25 +137,20 @@ body {
   .player-section {
     padding: 2rem;
   }
-
   .main-header {
     font-size: 1.5rem;
   }
-
   .btn-end-game {
     padding: .5rem 1rem;
     font-size: 1rem;
   }
-
   .board{
     padding: 0;
-  }
-  
+  }  
   .cell{
     height: 35px;
     width: 35px;
   }
-
   .end-game-h2 {
     line-height: 1.5;
     font-size: 1.5rem;
@@ -170,14 +163,11 @@ body {
     height: 30px;
     width: 30px;
   }
-
   .end-game-div {
     padding: 4rem 2rem 0 2rem;
   }
-
   .end-game-h2 {
     letter-spacing: 1px;
     font-size: 1.5rem;
   }
-
 }
