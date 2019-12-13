@@ -1,0 +1,173 @@
+body {
+  background-color: #222;
+}
+
+.player-section {
+  border: 2px solid #999;
+  border-radius: 5px;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-60%);
+  width: 70%;
+  padding: 5rem;
+}
+
+.main-header {
+  color: #999;
+  font-weight: 900;
+  letter-spacing: 5px;
+  font-size: 3rem;
+}
+
+.board-section {
+  padding: 2rem 0;
+}
+
+.board{
+  padding: 2rem;
+  margin: 0 auto;
+}
+
+.cell{
+  display: inline-block;
+  background: #555;
+  border: 1px solid #999;
+  border-radius: 3px;
+  padding: 1rem;
+  height: 50px;
+  width: 50px;
+  cursor: pointer;
+  font-size: 0;
+}
+
+.ship{
+  background: #a52a2a;
+}
+
+.board-label {
+  display: block;
+  margin-bottom: 1rem;
+  font-weight: 900;
+  font-size: 1.5rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #999;
+}
+
+.disabled {
+  pointer-events: none;
+}
+
+.attack-success {
+  background-color: #380f0f;
+  background-image: url('../img/fire.png');
+  background-size: 70%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.attack-missed {
+  background-color: rgb(12, 45, 77);
+  background-image: url('../img/water-splash.png');
+  background-size: 98%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.end-game {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10;
+  background-color: rgba(0,0,0,.8);
+  text-align: center;
+}
+
+.end-game-div {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  border: 2px solid #fff;
+  border-radius: 5px;
+  padding: 6rem 2rem 0 2rem;
+  width: 90%;
+  height: 50%;
+  max-width: 90%;
+  max-height: 50%;
+}
+
+.end-game-h2 {
+  color: #fff;
+  text-transform: capitalize;
+  letter-spacing: 5px;
+  font-size: 2.5rem;
+}
+
+.btn-end-game {
+  padding: 1rem 2rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 20px;
+  border: 1px solid #fff;
+}
+
+.hidden {
+  display: none;
+}
+
+@media only screen and (max-width: 950px) {
+  .player-section {
+    width: 80%;
+  }
+  .main-header {
+    font-size: 2.5rem;
+  }
+  .end-game-h2 {
+    letter-spacing: 3px;
+    font-size: 2rem;
+  }
+}
+
+@media only screen and (max-width: 770px) {
+  .player-section {
+    padding: 2rem;
+  }
+  .main-header {
+    font-size: 1.5rem;
+  }
+  .btn-end-game {
+    padding: .5rem 1rem;
+    font-size: 1rem;
+  }
+  .board{
+    padding: 0;
+  }  
+  .cell{
+    height: 35px;
+    width: 35px;
+  }
+  .end-game-h2 {
+    line-height: 1.5;
+    font-size: 1.5rem;
+  }
+}
+
+@media only screen and (max-width: 350px) {
+  .cell{
+    padding: .9rem;
+    height: 30px;
+    width: 30px;
+  }
+  .end-game-div {
+    padding: 4rem 2rem 0 2rem;
+  }
+  .end-game-h2 {
+    letter-spacing: 1px;
+    font-size: 1.5rem;
+  }
+}
